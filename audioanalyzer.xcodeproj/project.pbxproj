@@ -1,0 +1,277 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		AA6465C7192D8A1200466809 /* essentia in Headers */ = {isa = PBXBuildFile; fileRef = AA6465C6192D8A1200466809 /* essentia */; };
+		AA6465C9192D8A1B00466809 /* hiberlite in Headers */ = {isa = PBXBuildFile; fileRef = AA6465C8192D8A1B00466809 /* hiberlite */; };
+		AAA57AA319294C5000D0BE08 /* libhiberlite.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AAA57AA019294C5000D0BE08 /* libhiberlite.a */; };
+		AAA57AA419294C5000D0BE08 /* libessentia.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AAA57AA119294C5000D0BE08 /* libessentia.a */; };
+		AAA57AA519294C5000D0BE08 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = AAA57AA219294C5000D0BE08 /* libsqlite3.dylib */; };
+		AAA57B2119294C9F00D0BE08 /* audioAnalysis.h in Headers */ = {isa = PBXBuildFile; fileRef = AAA57B1E19294C9F00D0BE08 /* audioAnalysis.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AAA57B2219294C9F00D0BE08 /* audioAnalyzer.h in Headers */ = {isa = PBXBuildFile; fileRef = AAA57B1F19294C9F00D0BE08 /* audioAnalyzer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AAA57B2319294C9F00D0BE08 /* audioAnalyzerError.h in Headers */ = {isa = PBXBuildFile; fileRef = AAA57B2019294C9F00D0BE08 /* audioAnalyzerError.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AAA57B2619294CAC00D0BE08 /* audioAnalysis.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AAA57B2419294CAC00D0BE08 /* audioAnalysis.cpp */; };
+		AAA57B2719294CAC00D0BE08 /* audioAnalyzer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AAA57B2519294CAC00D0BE08 /* audioAnalyzer.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		AA6465C6192D8A1200466809 /* essentia */ = {isa = PBXFileReference; lastKnownFileType = folder; path = essentia; sourceTree = "<group>"; };
+		AA6465C8192D8A1B00466809 /* hiberlite */ = {isa = PBXFileReference; lastKnownFileType = folder; path = hiberlite; sourceTree = "<group>"; };
+		AAA57A9919294C3200D0BE08 /* libAudioAnalyzer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libAudioAnalyzer.a; path = libaudioanalyzer.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		AAA57AA019294C5000D0BE08 /* libhiberlite.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libhiberlite.a; path = "../../hiberlite-master/libhiberlite.a"; sourceTree = "<group>"; };
+		AAA57AA119294C5000D0BE08 /* libessentia.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libessentia.a; path = ../../../../../usr/local/lib/libessentia.a; sourceTree = "<group>"; };
+		AAA57AA219294C5000D0BE08 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = ../../../../../usr/lib/libsqlite3.dylib; sourceTree = "<group>"; };
+		AAA57B1E19294C9F00D0BE08 /* audioAnalysis.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = audioAnalysis.h; sourceTree = "<group>"; };
+		AAA57B1F19294C9F00D0BE08 /* audioAnalyzer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = audioAnalyzer.h; sourceTree = "<group>"; };
+		AAA57B2019294C9F00D0BE08 /* audioAnalyzerError.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = audioAnalyzerError.h; sourceTree = "<group>"; };
+		AAA57B2419294CAC00D0BE08 /* audioAnalysis.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = audioAnalysis.cpp; sourceTree = "<group>"; };
+		AAA57B2519294CAC00D0BE08 /* audioAnalyzer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = audioAnalyzer.cpp; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AAA57A9619294C3200D0BE08 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AAA57AA319294C5000D0BE08 /* libhiberlite.a in Frameworks */,
+				AAA57AA419294C5000D0BE08 /* libessentia.a in Frameworks */,
+				AAA57AA519294C5000D0BE08 /* libsqlite3.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AAA57A9019294C3200D0BE08 = {
+			isa = PBXGroup;
+			children = (
+				AA6465C8192D8A1B00466809 /* hiberlite */,
+				AA6465C6192D8A1200466809 /* essentia */,
+				AAA57B2419294CAC00D0BE08 /* audioAnalysis.cpp */,
+				AAA57B2519294CAC00D0BE08 /* audioAnalyzer.cpp */,
+				AAA57B1E19294C9F00D0BE08 /* audioAnalysis.h */,
+				AAA57B1F19294C9F00D0BE08 /* audioAnalyzer.h */,
+				AAA57B2019294C9F00D0BE08 /* audioAnalyzerError.h */,
+				AAA57AA019294C5000D0BE08 /* libhiberlite.a */,
+				AAA57AA119294C5000D0BE08 /* libessentia.a */,
+				AAA57AA219294C5000D0BE08 /* libsqlite3.dylib */,
+				AAA57A9A19294C3200D0BE08 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		AAA57A9A19294C3200D0BE08 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AAA57A9919294C3200D0BE08 /* libAudioAnalyzer.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		AAA57A9719294C3200D0BE08 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AAA57B2119294C9F00D0BE08 /* audioAnalysis.h in Headers */,
+				AAA57B2219294C9F00D0BE08 /* audioAnalyzer.h in Headers */,
+				AAA57B2319294C9F00D0BE08 /* audioAnalyzerError.h in Headers */,
+				AA6465C7192D8A1200466809 /* essentia in Headers */,
+				AA6465C9192D8A1B00466809 /* hiberlite in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		AAA57A9819294C3200D0BE08 /* audioanalyzer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AAA57A9D19294C3200D0BE08 /* Build configuration list for PBXNativeTarget "audioanalyzer" */;
+			buildPhases = (
+				AAA57A9519294C3200D0BE08 /* Sources */,
+				AAA57A9619294C3200D0BE08 /* Frameworks */,
+				AAA57A9719294C3200D0BE08 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = audioanalyzer;
+			productName = AudioAnalyzer;
+			productReference = AAA57A9919294C3200D0BE08 /* libAudioAnalyzer.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AAA57A9119294C3200D0BE08 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "___SMP_PRODUCTIONS___";
+			};
+			buildConfigurationList = AAA57A9419294C3200D0BE08 /* Build configuration list for PBXProject "audioanalyzer" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = AAA57A9019294C3200D0BE08;
+			productRefGroup = AAA57A9A19294C3200D0BE08 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AAA57A9819294C3200D0BE08 /* audioanalyzer */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AAA57A9519294C3200D0BE08 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AAA57B2619294CAC00D0BE08 /* audioAnalysis.cpp in Sources */,
+				AAA57B2719294CAC00D0BE08 /* audioAnalyzer.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		AAA57A9B19294C3200D0BE08 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		AAA57A9C19294C3200D0BE08 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		AAA57A9E19294C3200D0BE08 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEPLOYMENT_LOCATION = YES;
+				DEPLOYMENT_POSTPROCESSING = YES;
+				DSTROOT = /;
+				EXECUTABLE_PREFIX = lib;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/usr/local/lib/**",
+				);
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = /usr/local/include/audioanalyzer;
+			};
+			name = Debug;
+		};
+		AAA57A9F19294C3200D0BE08 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEPLOYMENT_LOCATION = YES;
+				DEPLOYMENT_POSTPROCESSING = YES;
+				DSTROOT = /;
+				EXECUTABLE_PREFIX = lib;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/usr/local/lib/**",
+				);
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = /usr/local/include/audioanalyzer;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AAA57A9419294C3200D0BE08 /* Build configuration list for PBXProject "audioanalyzer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AAA57A9B19294C3200D0BE08 /* Debug */,
+				AAA57A9C19294C3200D0BE08 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AAA57A9D19294C3200D0BE08 /* Build configuration list for PBXNativeTarget "audioanalyzer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AAA57A9E19294C3200D0BE08 /* Debug */,
+				AAA57A9F19294C3200D0BE08 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = AAA57A9119294C3200D0BE08 /* Project object */;
+}
