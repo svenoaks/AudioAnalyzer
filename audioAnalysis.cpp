@@ -11,11 +11,11 @@
 #include <fstream>
 #include <string>
 #include "audioAnalysis.h"
-#include "./essentia/algorithmfactory.h"
-#include "./essentia/streaming/algorithms/poolstorage.h"
-#include "./essentia/utils/tnt/tnt2vector.h"
-#include "./essentia//scheduler/network.h"
-#include "./hiberlite/hiberlite.h"
+#include "algorithmfactory.h"
+#include "poolstorage.h"
+#include "tnt2vector.h"
+#include "network.h"
+#include "hiberlite.h"
 #include "audioAnalyzerError.h"
 
 using namespace std;
@@ -23,87 +23,41 @@ using namespace essentia;
 using namespace essentia::scheduler;
 using namespace hiberlite;
 
-static const int MIN_NUM_VALID_BEATS = 60;
-static const int MIN_CONFIDENCE = 1.5;
+typedef TNT::Array2D<Real> array2d;
 
-float AudioAnalysis::beatBeforeFadeOutIfPresent(float timeBeforeEnd)
+void AudioAnalysis::analyzeBeats()
 {
-    static const int BEG_OF_FADE_OUT = 0;
+    using namespace streaming;
     
-    if (!hasValidData())
-    {
-        throw new AudioAnalyzerError("AudioAnalysis does not have valid data");
-    }
+    Pool pool;
     
-    float lastBeat = beatLocations.at(beatLocations.size() - 1);
-    float requiredTime;
-    if (fadeOutLocations.empty())
-    {
-        requiredTime = lastBeat - timeBeforeEnd;
-    }
-    else
-    {
-        float fadeOutBegTime = fadeOutLocations.at(fadeOutLocations.size() - 1).at(BEG_OF_FADE_OUT);
-        requiredTime = fadeOutBegTime - timeBeforeEnd;
-    }
+    int sr = 44100;
     
-    for (vector<Real>::reverse_iterator rit = beatLocations.rbegin(); rit != beatLocations.rend(); ++rit)
-    {
-        if (*rit < requiredTime)
-        {
-            return *rit;
-        }
-    }
+    AlgorithmFactory& factory = streaming::AlgorithmFactory::instance();
     
-    return lastBeat;
+    //Algorithms owned by Network n.
     
-}
-float AudioAnalysis::beatAfterFadeInIfPresent(float timeIntoSong)
-{
-    static const int FIRST_FADE_IN = 0;
-    static const int FIRST_BEAT = 0;
-    static const int END_OF_FADE_IN = 1;
+    Algorithm* audio = factory.create("MonoLoader",
+                                      "filename", fileName,
+                                      "sampleRate", sr);
     
-    if (!hasValidData())
-    {
-        throw new AudioAnalyzerError("AudioAnalysis does not have valid data");
-    }
+    Algorithm* bt    = factory.create("RhythmExtractor2013");
     
-    float endFade  = fadeInLocations.empty() ? FIRST_BEAT : fadeInLocations.at(FIRST_FADE_IN).at(END_OF_FADE_IN);
-    float time = endFade + timeIntoSong;
-    for (float beat : beatLocations)
-    {
-        if (beat > time)
-        {
-            return beat;
-        }
-    }
-    return beatLocations.at(FIRST_BEAT);
-}
-
-void AudioAnalysis::setFileName(const string& fileName)
-{
-    this->fileName = fileName;
-}
-
-void AudioAnalysis::setFileSize(long long fileSize)
-{
-    this->fileSize = fileSize;
-}
-
-void AudioAnalysis::setBeenAnalyzed(bool value)
-{
-    beenAnalyzed = value;
-}
-
-bool AudioAnalysis::hasBeenAnalyzed()
-{
-    return beenAnalyzed;
-}
-bool AudioAnalysis::hasValidData()
-{
-    return beatLocations.size() >= MIN_NUM_VALID_BEATS &&
-            beatConfidence >= MIN_CONFIDENCE;
+    audio->output("audio")     >>  bt->input("signal");
+    bt->output("confidence")   >>  PC(pool, "confidence.bpm");
+    bt->output("ticks")        >>  PC(pool, "beats.bpm");
+    bt->output("bpm")          >>  PC(pool, "bpm.bpm");
+    bt->output("estimates")    >>  NOWHERE;
+    bt->output("bpmIntervals") >>  NOWHERE;
+    
+    Network n(audio);
+    n.run();
+    
+    n.clear();
+    
+    beatLocations = move(pool.value<vector<Real>>("beats.bpm"));
+    beatConfidence = pool.value<Real>("confidence.bpm");
+    bpm = pool.value<Real>("bpm.bpm");
 }
 
 void AudioAnalysis::analyzeFade()
@@ -170,39 +124,89 @@ void AudioAnalysis::analyzeFade()
     if (fade_in.dim1() > 0) fadeInLocations = array2DToVecvec(fade_in);
     if (fade_out.dim1() > 0) fadeOutLocations = array2DToVecvec(fade_out);
 }
-void AudioAnalysis::analyzeBeats()
-{
-    using namespace streaming;
-    
-    Pool pool;
-    
-    int sr = 44100;
 
-    AlgorithmFactory& factory = streaming::AlgorithmFactory::instance();
+float AudioAnalysis::beatAfterFadeInIfPresent(float timeIntoSong)
+{
+    static const int FIRST_FADE_IN = 0;
+    static const int FIRST_BEAT = 0;
+    static const int END_OF_FADE_IN = 1;
     
-    //Algorithms owned by Network n.
+    if (!hasValidData())
+    {
+        throw new AudioAnalyzerError("AudioAnalysis does not have valid data");
+    }
     
-    Algorithm* audio = factory.create("MonoLoader",
-                                      "filename", fileName,
-                                      "sampleRate", sr);
+    float endFade  = fadeInLocations.empty() ? FIRST_BEAT : fadeInLocations.at(FIRST_FADE_IN).at(END_OF_FADE_IN);
+    float time = endFade + timeIntoSong;
+    for (float beat : beatLocations)
+    {
+        if (beat > time)
+        {
+            return beat;
+        }
+    }
+    return beatLocations.at(FIRST_BEAT);
+}
+
+float AudioAnalysis::beatBeforeFadeOutIfPresent(float timeBeforeEnd)
+{
+    static const int BEG_OF_FADE_OUT = 0;
     
-    Algorithm* bt    = factory.create("RhythmExtractor2013");
+    if (!hasValidData())
+    {
+        throw new AudioAnalyzerError("AudioAnalysis does not have valid data");
+    }
     
-    audio->output("audio")     >>  bt->input("signal");
-    bt->output("confidence")   >>  PC(pool, "confidence.bpm");
-    bt->output("ticks")        >>  PC(pool, "beats.bpm");
-    bt->output("bpm")          >>  PC(pool, "bpm.bpm");
-    bt->output("estimates")    >>  NOWHERE;
-    bt->output("bpmIntervals") >>  NOWHERE;
+    float lastBeat = beatLocations.at(beatLocations.size() - 1);
+    float requiredTime;
+    if (fadeOutLocations.empty())
+    {
+        requiredTime = lastBeat - timeBeforeEnd;
+    }
+    else
+    {
+        float fadeOutBegTime = fadeOutLocations.at(fadeOutLocations.size() - 1).at(BEG_OF_FADE_OUT);
+        requiredTime = fadeOutBegTime - timeBeforeEnd;
+    }
     
-    Network n(audio);
-    n.run();
+    for (vector<Real>::reverse_iterator rit = beatLocations.rbegin(); rit != beatLocations.rend(); ++rit)
+    {
+        if (*rit < requiredTime)
+        {
+            return *rit;
+        }
+    }
     
-    n.clear();
+    return lastBeat;
     
-    beatLocations = move(pool.value<vector<Real>>("beats.bpm"));
-    beatConfidence = pool.value<Real>("confidence.bpm");
-    bpm = pool.value<Real>("bpm.bpm");
+}
+
+bool AudioAnalysis::hasBeenAnalyzed()
+{
+    return beenAnalyzed;
+}
+bool AudioAnalysis::hasValidData()
+{
+    static const int MIN_NUM_VALID_BEATS = 60;
+    static const int MIN_CONFIDENCE = 1.5;
+    
+    return beatLocations.size() >= MIN_NUM_VALID_BEATS &&
+    beatConfidence >= MIN_CONFIDENCE;
+}
+
+void AudioAnalysis::setBeenAnalyzed(bool value)
+{
+    beenAnalyzed = value;
+}
+
+void AudioAnalysis::setFileName(const string& fileName)
+{
+    this->fileName = fileName;
+}
+
+void AudioAnalysis::setFileSize(long long fileSize)
+{
+    this->fileSize = fileSize;
 }
 
 void AudioAnalysis::print()

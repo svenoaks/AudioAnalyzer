@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA3AFE571930F80800BE9B31 /* libhiberlite.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AA3AFE561930F80800BE9B31 /* libhiberlite.a */; };
 		AA6465C7192D8A1200466809 /* essentia in Headers */ = {isa = PBXBuildFile; fileRef = AA6465C6192D8A1200466809 /* essentia */; };
 		AA6465C9192D8A1B00466809 /* hiberlite in Headers */ = {isa = PBXBuildFile; fileRef = AA6465C8192D8A1B00466809 /* hiberlite */; };
-		AAA57AA319294C5000D0BE08 /* libhiberlite.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AAA57AA019294C5000D0BE08 /* libhiberlite.a */; };
 		AAA57AA419294C5000D0BE08 /* libessentia.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AAA57AA119294C5000D0BE08 /* libessentia.a */; };
 		AAA57AA519294C5000D0BE08 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = AAA57AA219294C5000D0BE08 /* libsqlite3.dylib */; };
 		AAA57B2119294C9F00D0BE08 /* audioAnalysis.h in Headers */ = {isa = PBXBuildFile; fileRef = AAA57B1E19294C9F00D0BE08 /* audioAnalysis.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -20,10 +20,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AA3AFE561930F80800BE9B31 /* libhiberlite.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libhiberlite.a; path = ../../../../../usr/local/lib/libhiberlite.a; sourceTree = "<group>"; };
 		AA6465C6192D8A1200466809 /* essentia */ = {isa = PBXFileReference; lastKnownFileType = folder; path = essentia; sourceTree = "<group>"; };
 		AA6465C8192D8A1B00466809 /* hiberlite */ = {isa = PBXFileReference; lastKnownFileType = folder; path = hiberlite; sourceTree = "<group>"; };
 		AAA57A9919294C3200D0BE08 /* libAudioAnalyzer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libAudioAnalyzer.a; path = libaudioanalyzer.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		AAA57AA019294C5000D0BE08 /* libhiberlite.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libhiberlite.a; path = "../../hiberlite-master/libhiberlite.a"; sourceTree = "<group>"; };
 		AAA57AA119294C5000D0BE08 /* libessentia.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libessentia.a; path = ../../../../../usr/local/lib/libessentia.a; sourceTree = "<group>"; };
 		AAA57AA219294C5000D0BE08 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = ../../../../../usr/lib/libsqlite3.dylib; sourceTree = "<group>"; };
 		AAA57B1E19294C9F00D0BE08 /* audioAnalysis.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = audioAnalysis.h; sourceTree = "<group>"; };
@@ -38,9 +38,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AAA57AA319294C5000D0BE08 /* libhiberlite.a in Frameworks */,
 				AAA57AA419294C5000D0BE08 /* libessentia.a in Frameworks */,
 				AAA57AA519294C5000D0BE08 /* libsqlite3.dylib in Frameworks */,
+				AA3AFE571930F80800BE9B31 /* libhiberlite.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -50,6 +50,7 @@
 		AAA57A9019294C3200D0BE08 = {
 			isa = PBXGroup;
 			children = (
+				AA3AFE561930F80800BE9B31 /* libhiberlite.a */,
 				AA6465C8192D8A1B00466809 /* hiberlite */,
 				AA6465C6192D8A1200466809 /* essentia */,
 				AAA57B2419294CAC00D0BE08 /* audioAnalysis.cpp */,
@@ -57,7 +58,6 @@
 				AAA57B1E19294C9F00D0BE08 /* audioAnalysis.h */,
 				AAA57B1F19294C9F00D0BE08 /* audioAnalyzer.h */,
 				AAA57B2019294C9F00D0BE08 /* audioAnalyzerError.h */,
-				AAA57AA019294C5000D0BE08 /* libhiberlite.a */,
 				AAA57AA119294C5000D0BE08 /* libessentia.a */,
 				AAA57AA219294C5000D0BE08 /* libsqlite3.dylib */,
 				AAA57A9A19294C3200D0BE08 /* Products */,
@@ -223,6 +223,12 @@
 				DEPLOYMENT_POSTPROCESSING = YES;
 				DSTROOT = /;
 				EXECUTABLE_PREFIX = lib;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"/usr/local/include/essentia/**",
+					"/usr/local/include/hiberlite/**",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"/usr/local/lib/**",
@@ -240,6 +246,12 @@
 				DEPLOYMENT_POSTPROCESSING = YES;
 				DSTROOT = /;
 				EXECUTABLE_PREFIX = lib;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"/usr/local/include/essentia/**",
+					"/usr/local/include/hiberlite/**",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"/usr/local/lib/**",
